@@ -10,15 +10,12 @@ import rrwebPlayer from 'rrweb-player'
 import 'rrweb-player/dist/style.css'
 interface Props {
 
-  root: ShadowRoot | HTMLElement;
-
 }
 
 export function App(props: Props) {
 
   const [recording, setRecording] = useState(false);
-  const [reportURL, setReportURL] = useState("");
-  const elementRef = useRef<HTMLDivElement>(null);
+
   const recorder = useRecorder();
 
   useEffect(() => {
@@ -42,20 +39,10 @@ export function App(props: Props) {
       return;
     }
     recorder.start(() => {});
-    setTimeout(() => {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet'
-      link.type = "text/css"
-      link.href = '//activity.hdslb.com/blackboard/static/1d5c9c63ddd602617ed9a6ec73bebe8f/test.css'
-      props.root.appendChild(link);
-    }, 200);
+
     setRecording(true);
   }
-  const styleStr = `
-    p {
-      color: red;
-    }
-  `
+
   const handleStopRecord = async () => {
     recorder.stop();
     setRecording(false);
@@ -74,8 +61,10 @@ export function App(props: Props) {
     <>
       <style>{antdStyle}</style>
       <style>{appStyle}</style>
-      <style> {styleStr}</style>
-      <p>Test text, from red to blue color</p>
+
+      <div className="box1">var(--red)   -- bug</div>
+      <div className="box2">var(--color)</div>
+
       <button onClick={handleStart}>{recording ? 'stop' : 'start'}</button>
 
     </>

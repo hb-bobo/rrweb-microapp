@@ -6,22 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feedback-sdk</title>
     <style>
-      #tianshu_feedback_trigger {
-        position: absolute;
-        bottom: 20px;
-        right: 200px;
-        width: 40px;
-        height: 40px;
-        background-color: red;
+      :root {
+        --red: red;
+        --color: var(--red);
+      }
+      .box1{
+        background-color: #FFF;
+        background: var(--color);
+        background-clip: padding-box;
+      }
+      .box2{
+        background: var(--red);
       }
     </style>
   </head>
   <body>
-    
+    <pre>
+      :root {
+        --red: red;
+        --color: var(--red);
+      }
+      .box1{
+        background-color: #FFF;
+        background: var(--color);
+      }
+      .box2{
+        background: var(--red);
+      }
+    </pre>
     <div id="app">
-      <div id="rr-web"></div>
-    </div>
 
+    </div>
+    <div id="rr-web"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
