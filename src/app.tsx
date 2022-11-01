@@ -19,12 +19,14 @@ export function App(props: Props) {
   const recorder = useRecorder();
 
   useEffect(() => {
+    const style = document.getElementsByTagName('style')[0];
+    console.log(style)
     const config = { attributes: true, childList: true, subtree: true };
     const callback = function(mutationsList: any[], observer: any) {
         // Use traditional 'for loops' for IE 11
         for(let mutation of mutationsList) {
             if (mutation.type === 'childList') {
-                console.log('A child node has been added or removed.');
+                // console.log('A child node has been added or removed.');
             }
         }
     };
@@ -47,6 +49,7 @@ export function App(props: Props) {
     recorder.stop();
     setRecording(false);
     const c = document.getElementById('rr-web')
+    console.log(recorder.getEevents())
     if (c) {
       new rrwebPlayer({
         target: c, // customizable root element
